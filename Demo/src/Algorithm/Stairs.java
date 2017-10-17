@@ -1,3 +1,5 @@
+package Algorithm;
+
 /**
  * Created by Clanner on 2017/6/5.
  * 一次一步，
