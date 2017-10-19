@@ -1,5 +1,6 @@
 package FarExecuter;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 /**
@@ -14,6 +15,11 @@ public class JavaClassExecuter {
         HotSwapClassLoader loader = new HotSwapClassLoader();
         Class clazz = loader.loadByte(modifyBytes);
         try {
+//            Constructor con = clazz.getConstructor();
+//            Object object = con.newInstance();
+//            Method method = clazz.getMethod("test");
+//            method.invoke(object);
+
             Method method = clazz.getMethod("main", new Class[]{String[].class});
             method.invoke(null, new String[]{null});
         } catch (Throwable e) {

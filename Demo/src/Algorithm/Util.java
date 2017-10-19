@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -22,7 +23,7 @@ public class Util {
             "void", "for", "do", "while", "break", "continue", "if", "else", "goto", "switch", "case", "default", "return",
             "auto", "extern", "register", "static", "const", "sizeof", "typedef", "volatile", "!", "&", "|", "&&",
             "||", "+", "-", "*", "/", "<", ">", "<=", ">=", "==", "", "number", "decimal", "=", ";", ",", "'",
-            "/*", "*/", ":", "(", ")", "\\.", "{", "}","\\n"};
+            "/*", "*/", ":", "(", ")", "\\.", "{", "}", "\\n"};
 
     private Util() {
         Collections.addAll(TAG, P);
@@ -48,7 +49,7 @@ public class Util {
         System.out.println(builder.toString());
     }
 
-    private char[] appendChar(char a,char b){
+    private char[] appendChar(char a, char b) {
         char[] chars = new char[2];
         chars[0] = a;
         chars[1] = b;
@@ -78,14 +79,14 @@ public class Util {
                 switch (ch) {
                     case '<':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
                         break;
                     case '>':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
@@ -95,35 +96,35 @@ public class Util {
                         break;
                     case '*':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
                         break;
                     case '/':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
                         break;
                     case '+':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
                         break;
                     case '-':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
                         break;
                     case '=':
                         if (string.charAt(i + 1) == '=') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
@@ -151,14 +152,14 @@ public class Util {
                         break;
                     case '|':
                         if (string.charAt(i + 1) == '|') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
                         break;
                     case '&':
                         if (string.charAt(i + 1) == '&') {
-                            println(String.valueOf(appendChar(ch,string.charAt(++i))));
+                            println(String.valueOf(appendChar(ch, string.charAt(++i))));
                         } else {
                             println(String.valueOf(ch));
                         }
@@ -220,6 +221,21 @@ public class Util {
         }
 
         return bags;
+    }
+
+    public int cpu(int[] times) {
+        int sum = 0;
+        for (int time : times)
+            sum += time >> 10;
+
+        int[] dp = new int[sum / 2 + 1];
+        for (int i = 0; i < times.length; i++) {
+            for (int j = sum / 2; j >= times[i]; j--) {
+                dp[j] = Math.max(dp[j], dp[j - times[i]] + times[i]);
+            }
+        }
+        System.out.println(Math.max(dp[sum / 2], sum - dp[sum / 2]) << 10);
+        return Math.max(dp[sum / 2], sum - dp[sum / 2]) << 10;
     }
 
     public static final Util getInstance() {
