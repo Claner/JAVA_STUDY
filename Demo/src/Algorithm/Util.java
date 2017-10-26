@@ -1,15 +1,15 @@
 package Algorithm;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
  * Created by Clanner on 2017/10/13.
  */
 public class Util {
+
 
     /**
      * 索引表示种别码
@@ -56,6 +56,11 @@ public class Util {
         return chars;
     }
 
+    /**
+     * 词法分析
+     *
+     * @param string
+     */
     public final void lexicalAnalysis(String string) {
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
@@ -173,17 +178,32 @@ public class Util {
         }
     }
 
-    public static boolean isNumber(String str) {
+    /**
+     * 判断字符串是否是数字
+     *
+     * @param str
+     * @return
+     */
+    public boolean isNumber(String str) {
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
         return pattern.matcher(str).matches();
     }
 
+    /**
+     * 获取背包最大价值
+     *
+     * @param goods
+     * @param MAX_WEIGHT
+     * @return
+     */
     public final int getBagMaxValue(Good[] goods, int MAX_WEIGHT) {
         int bags[][] = calMaxValue(goods, MAX_WEIGHT);
         return bags[goods.length][MAX_WEIGHT];
     }
 
     /**
+     * 计算背包最大价值
+     *
      * @param goods      物品列表
      * @param MAX_WEIGHT 背包最大容量
      * @return 返回最大价值
@@ -223,6 +243,91 @@ public class Util {
         return bags;
     }
 
+    /**
+     * 小易准备去魔法王国采购魔法神器,购买魔法神器需要使用魔法币,但是小易现在一枚魔法币都没有,但是小易有两台魔法机器可以通过投入x(x可以为0)个魔法币产生更多的魔法币。
+     * 魔法机器1:如果投入x个魔法币,魔法机器会将其变为2x+1个魔法币
+     * 魔法机器2:如果投入x个魔法币,魔法机器会将其变为2x+2个魔法币
+     * 小易采购魔法神器总共需要n个魔法币,所以小易只能通过两台魔法机器产生恰好n个魔法币,小易需要你帮他设计一个投入方案使他最后恰好拥有n个魔法币。
+     *
+     * @param n
+     */
+    public void coin(int n) {
+        List<Integer> list = new ArrayList<Integer>();
+
+        int result = n;
+
+        while (result != 0) {
+
+            System.out.println("result:" + result);
+
+            if (result % 2 == 0) {
+                result = (result - 2) / 2;
+                list.add(2);
+            } else {
+                result = (result - 1) / 2;
+                list.add(1);
+            }
+        }
+
+        for (int i = list.size(); i > 0; i--) {
+            System.out.print(list.get(i - 1));
+        }
+    }
+
+    /**
+     * 计算一个数与它相反数的和
+     *
+     * @param n
+     * @return
+     */
+    public int calSum(int n) {
+        int sum = 0;
+        int temp = n;
+
+        while (temp != 0) {
+            sum = sum * 10 + (temp % 10);
+            temp = temp / 10;
+        }
+        return n + sum;
+    }
+
+    /**
+     * 计算字符串平均长度
+     *
+     * @param string
+     */
+    public void calStr(String string) {
+        char temp = string.charAt(0);
+        int j = 1;
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 1; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if (c == temp) {
+                j++;
+                if (i + 1 == string.length()) list.add(j);
+            } else {
+                temp = c;
+                list.add(j);
+                j = 1;
+                if (i + 1 == string.length()) list.add(j);
+            }
+        }
+
+        float sum = 0;
+        for (int i : list) {
+            sum += i;
+        }
+        sum = sum / list.size();
+        System.out.println(new DecimalFormat("##0.00").format(sum));
+    }
+
+    /**
+     * 动态规划问题
+     * 两个cpu，一秒处理一个kb的任务
+     *
+     * @param times 任务的大小
+     * @return
+     */
     public int cpu(int[] times) {
         int sum = 0;
         for (int time : times)
@@ -236,6 +341,54 @@ public class Util {
         }
         System.out.println(Math.max(dp[sum / 2], sum - dp[sum / 2]) << 10);
         return Math.max(dp[sum / 2], sum - dp[sum / 2]) << 10;
+    }
+
+    /**
+     * 字符串反转
+     *
+     * @param str
+     * @return
+     */
+    public String rotation(String str) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = str.length() - 1; i > -1; i--) builder.append(str.charAt(i));
+        return builder.toString();
+    }
+
+    /**
+     * 判断两个字符串是否是旋转词
+     *
+     * @return
+     */
+    public boolean isRotationStr(String A, String B) {
+        return (A+A).contains(B);
+    }
+
+    /**
+     * 反转句子
+     *
+     * @return
+     */
+    public String rotationSentence(String sentence) {
+        StringBuilder builder = new StringBuilder();
+        String[] words = rotation(sentence).split(" ");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = rotation(words[i]);
+            builder.append(words[i]);
+            builder.append(" ");
+        }
+        return builder.toString().trim();
+    }
+
+    /**
+     * 交换两个子串
+     *
+     * @param str
+     * @param position
+     * @return
+     */
+    public String rotationPosition(String str, int position) {
+        return rotation(rotation(str.substring(0, position + 1)) + rotation(str.substring(position + 1, str.length())));
     }
 
     public static final Util getInstance() {

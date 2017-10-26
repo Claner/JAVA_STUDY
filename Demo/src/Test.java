@@ -1,22 +1,15 @@
 import Algorithm.Good;
+import Algorithm.TreeNode;
+import Algorithm.TreeUtil;
 import Algorithm.Util;
-import BookingSystem.Window1;
-import BookingSystem.Window2;
-import FarExecuter.JavaClassExecuter;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by Clanner on 2017/4/28.
  * 0，1背包问题
  */
-public class Test{
+public class Test {
     private static Good[] goods = {new Good(50, 101), new Good(20, 100), new Good(30, 120)};
-    private static final String MESSAGE="taobao";
+    private static final String MESSAGE = "taobao";
 
     public static void main(String[] args) throws InterruptedException {
 //        String str = "if (r >= num.text()){ C = 2.0*=pi*r;}\n";
@@ -61,10 +54,33 @@ public class Test{
 //        t.join();
 //        System.out.print(Math.floor(-8.5));
 
-        String a ="tao"+"bao";
-        String b="tao";
-        String c="bao";
-        System.out.println(a==MESSAGE);
-        System.out.println((b+c)==MESSAGE);
+//        String a ="tao"+"bao";
+//        String b="tao";
+//        String c="bao";
+//        System.out.println(a==MESSAGE);
+//        System.out.println((b+c)==MESSAGE);
+
+//        Util.getInstance().calStr("wwwwssffiuuuuusssssooooolllsssssshhhhcccchhhhhllo");
+//        ((Util)null).calStr("wwwwssffiuuuuusssssooooolllsssssshhhhcccchhhhhllo");
+//        int[] values = {20, 13, 24, 32, 42, 5, 8, 1, 2, 3, 5, 2, 1, 3};
+//        SortUtil.getInstance().insertionSort(values);
+//        for (int i : values) System.out.print(i + ",");
+
+//        TreeNode root = new TreeNode(1);
+//        TreeNode left = new TreeNode(2);
+//        TreeNode right = new TreeNode(3);
+//        root.setLeft(left);
+//        root.setRight(right);
+//        left.setLeft(new TreeNode(4));
+//        left.setRight(null);
+//        TreeNode left2 = new TreeNode(5);
+//        right.setLeft(left2);
+//        right.setRight(new TreeNode(6));
+//        left2.setLeft(new TreeNode(7));
+//        left2.setRight(new TreeNode(8));
+//        TreeUtil.getInstance().printTree(root);
+//        String s = TreeUtil.getInstance().serialize(root,TreeUtil.DLR);
+        System.out.println(Util.getInstance().rotationPosition("ABCDE",2));
     }
+
 }
