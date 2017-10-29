@@ -8,6 +8,6 @@ public class Lock {
 //        ThreadDemo.demo3();
 //        ThreadDemo.runDAfterABC();
 //        ThreadDemo.runABCWhenAllReady();
-        ThreadDemo.doTaskWithResultInWorker();
+//        ThreadDemo.doTaskWithResultInWorker();
     }
 }

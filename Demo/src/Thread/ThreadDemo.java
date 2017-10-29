@@ -7,7 +7,7 @@ import java.util.concurrent.*;
  * Created by Clanner on 2017/10/19.
  */
 public class ThreadDemo {
-    public static void demo3(){
+    public static void demo3() {
         final Object lock = new Object();
         Thread A = new Thread(new Runnable() {
             @Override
@@ -61,7 +61,7 @@ public class ThreadDemo {
                 }
             }
         }).start();
-        for (char threadName='A'; threadName <= 'C'; threadName++) {
+        for (char threadName = 'A'; threadName <= 'C'; threadName++) {
             final String tN = String.valueOf(threadName);
             new Thread(new Runnable() {
                 @Override
@@ -83,7 +83,7 @@ public class ThreadDemo {
         int runner = 3;
         final CyclicBarrier cyclicBarrier = new CyclicBarrier(runner);
         final Random random = new Random();
-        for (char runnerName='A'; runnerName <= 'C'; runnerName++) {
+        for (char runnerName = 'A'; runnerName <= 'C'; runnerName++) {
             final String rN = String.valueOf(runnerName);
             new Thread(new Runnable() {
                 @Override
@@ -117,7 +117,7 @@ public class ThreadDemo {
                 System.out.println("Task starts");
                 Thread.sleep(1000);
                 int result = 0;
-                for (int i=0; i<=100; i++) {
+                for (int i = 0; i <= 100; i++) {
                     result += i;
                 }
                 System.out.println("Task finished and return result");

@@ -2,6 +2,11 @@ import Algorithm.Good;
 import Algorithm.TreeNode;
 import Algorithm.TreeUtil;
 import Algorithm.Util;
+import BookingSystem.BookingSystem;
+import BookingSystem.Flight;
+import Sort.SortUtil;
+
+import java.util.List;
 
 /**
  * Created by Clanner on 2017/4/28.
@@ -28,7 +33,7 @@ public class Test {
 //            e.printStackTrace();
 //        }
 
-//        Window1 window1 = new Window1();
+//        Window window1 = new Window();
 //        Window2 window2 = new Window2();
 //        window1.start();
 //        window2.start();
@@ -63,24 +68,37 @@ public class Test {
 //        Util.getInstance().calStr("wwwwssffiuuuuusssssooooolllsssssshhhhcccchhhhhllo");
 //        ((Util)null).calStr("wwwwssffiuuuuusssssooooolllsssssshhhhcccchhhhhllo");
 //        int[] values = {20, 13, 24, 32, 42, 5, 8, 1, 2, 3, 5, 2, 1, 3};
-//        SortUtil.getInstance().insertionSort(values);
+//        SortUtil.getInstance().countingSort(values);
 //        for (int i : values) System.out.print(i + ",");
 
-//        TreeNode root = new TreeNode(1);
-//        TreeNode left = new TreeNode(2);
-//        TreeNode right = new TreeNode(3);
-//        root.setLeft(left);
-//        root.setRight(right);
-//        left.setLeft(new TreeNode(4));
-//        left.setRight(null);
-//        TreeNode left2 = new TreeNode(5);
-//        right.setLeft(left2);
-//        right.setRight(new TreeNode(6));
-//        left2.setLeft(new TreeNode(7));
-//        left2.setRight(new TreeNode(8));
-//        TreeUtil.getInstance().printTree(root);
-//        String s = TreeUtil.getInstance().serialize(root,TreeUtil.DLR);
-        System.out.println(Util.getInstance().rotationPosition("ABCDE",2));
+//        int[] a = {3, 1, 8, 4, 5, 7, 6, 2};
+//        TreeNode head = TreeNode.createTree(a);
+//        TreeUtil.getInstance().printTree(head);
+
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(3);
+        root.setLeft(left);
+        root.setRight(right);
+        left.setLeft(new TreeNode(4));
+        left.setRight(null);
+        TreeNode left2 = new TreeNode(5);
+        right.setLeft(left2);
+        right.setRight(new TreeNode(6));
+        left2.setLeft(new TreeNode(7));
+        left2.setRight(new TreeNode(8));
+        TreeUtil.getInstance().printTree(root);
+        String s = TreeUtil.getInstance().serialize(root,TreeUtil.DLR);
+        System.out.println(s);
+//        s = TreeUtil.getInstance().serialize(root,TreeUtil.LDR);
+//        System.out.println(s);
+//        s = TreeUtil.getInstance().serialize(root,TreeUtil.LRD);
+//        System.out.println(s);
+        TreeNode node  =TreeUtil.getInstance().createTreeNode(s);
+        TreeUtil.getInstance().printTree(node);
+//        System.out.println(Util.getInstance().rotationPosition("ABCDE",2));
+
+
     }
 
 }

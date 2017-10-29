@@ -11,10 +11,8 @@ public class TreeUtil {
     public static final int DLR = 1;
     public static final int LDR = 2;
     public static final int LRD = 3;
-    private StringBuilder builder;
 
     private TreeUtil() {
-        builder = new StringBuilder();
     }
 
     public static final TreeUtil getInstance() {
@@ -54,23 +52,78 @@ public class TreeUtil {
     }
 
     /**
+     * 前序反序列化
+     *
+     * @param head
+     * @param values
+     * @param index
+     */
+    private void deserialize_dlr(TreeNode head, String[] values, int index) {
+
+    }
+
+    /**
+     * 前序序列化
+     */
+    private void serialize_dlr(TreeNode head, StringBuilder builder) {
+        builder.append(head.getVal());
+        builder.append("!");
+        if (head.getLeft() != null) {
+            serialize_dlr(head.getLeft(), builder);
+        } else {
+            builder.append("#!");
+        }
+        if (head.getRight() != null) {
+            serialize_dlr(head.getRight(), builder);
+        } else {
+            builder.append("#!");
+        }
+    }
+
+    /**
+     * 中序序列化
+     */
+    private void serialize_ldr(TreeNode head, StringBuilder builder) {
+        if (head.getLeft() != null) {
+            serialize_ldr(head.getLeft(), builder);
+        } else {
+            builder.append("#!");
+        }
+        builder.append(head.getVal());
+        builder.append("!");
+        if (head.getRight() != null) {
+            serialize_ldr(head.getRight(), builder);
+        } else {
+            builder.append("#!");
+        }
+    }
+
+    /**
+     * 后序序列化
+     */
+    private void serialize_lrd(TreeNode head, StringBuilder builder) {
+        if (head.getLeft() != null) {
+            serialize_lrd(head.getLeft(), builder);
+        } else {
+            builder.append("#!");
+        }
+        if (head.getRight() != null) {
+            serialize_lrd(head.getRight(), builder);
+        } else {
+            builder.append("#!");
+        }
+        builder.append(head.getVal());
+        builder.append("!");
+    }
+
+    /**
      * 前序遍历(根左右)
      */
     public void DLR(TreeNode head) {
         if (head == null) return;
         System.out.print(head.getVal());
-        builder.append(head.getVal());
-        builder.append("!");
-        if (head.getLeft() != null) {
-            DLR(head.getLeft());
-        } else {
-            builder.append("#!");
-        }
-        if (head.getRight() != null) {
-            DLR(head.getRight());
-        } else {
-            builder.append("#!");
-        }
+        if (head.getLeft() != null) DLR(head.getLeft());
+        if (head.getRight() != null) DLR(head.getRight());
     }
 
     /**
@@ -78,19 +131,9 @@ public class TreeUtil {
      */
     public void LDR(TreeNode head) {
         if (head == null) return;
-        if (head.getLeft() != null) {
-            LDR(head.getLeft());
-        } else {
-            builder.append("#!");
-        }
+        if (head.getLeft() != null) LDR(head.getLeft());
         System.out.print(head.getVal());
-        builder.append(head.getVal());
-        builder.append("!");
-        if (head.getRight() != null) {
-            LDR(head.getRight());
-        } else {
-            builder.append("#!");
-        }
+        if (head.getRight() != null) LDR(head.getRight());
     }
 
     /**
@@ -98,19 +141,9 @@ public class TreeUtil {
      */
     public void LRD(TreeNode head) {
         if (head == null) return;
-        if (head.getLeft() != null) {
-            LRD(head.getLeft());
-        } else {
-            builder.append("#!");
-        }
-        if (head.getRight() != null) {
-            LRD(head.getRight());
-        } else {
-            builder.append("#!");
-        }
+        if (head.getLeft() != null) LRD(head.getLeft());
+        if (head.getRight() != null) LRD(head.getRight());
         System.out.print(head.getVal());
-        builder.append(head.getVal());
-        builder.append("!");
     }
 
     /**
@@ -135,7 +168,8 @@ public class TreeUtil {
             type = 0;
         }
         String[] values = strings[2].split("!");
-        TreeNode head = new TreeNode(Integer.parseInt(values[0]));
+        TreeNode head = new TreeNode(0);
+        TreeNode temp = head;
         switch (type) {
             case DLR://前
                 break;
@@ -156,18 +190,19 @@ public class TreeUtil {
      * @param type 序列化方式
      */
     public String serialize(TreeNode head, int type) {
+        StringBuilder builder = new StringBuilder();
         builder.append("type_id:");
         builder.append(type);
         builder.append(":");
         switch (type) {
             case DLR:
-                DLR(head);
+                serialize_dlr(head, builder);
                 return builder.toString();
             case LDR:
-                LDR(head);
+                serialize_ldr(head, builder);
                 return builder.toString();
             case LRD:
-                LRD(head);
+                serialize_lrd(head, builder);
                 return builder.toString();
             default:
                 return "序列化类型错误";
