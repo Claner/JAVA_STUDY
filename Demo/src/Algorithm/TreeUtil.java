@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * Created by Clanner on 2017/10/25.
@@ -11,6 +12,8 @@ public class TreeUtil {
     public static final int DLR = 1;
     public static final int LDR = 2;
     public static final int LRD = 3;
+    public static final int LEVEL = 4;
+    private int index = -1;
 
     private TreeUtil() {
     }
@@ -52,31 +55,33 @@ public class TreeUtil {
     }
 
     /**
-     * 前序反序列化
-     *
-     * @param head
-     * @param values
-     * @param index
-     */
-    private void deserialize_dlr(TreeNode head, String[] values, int index) {
-
-    }
-
-    /**
      * 前序序列化
      */
     private void serialize_dlr(TreeNode head, StringBuilder builder) {
-        builder.append(head.getVal());
-        builder.append("!");
-        if (head.getLeft() != null) {
-            serialize_dlr(head.getLeft(), builder);
+        if (head != null) {
+            builder.append(head.getVal());
+            builder.append("!");
         } else {
             builder.append("#!");
+            return;
         }
-        if (head.getRight() != null) {
-            serialize_dlr(head.getRight(), builder);
+        serialize_dlr(head.getLeft(), builder);
+        serialize_dlr(head.getRight(), builder);
+    }
+
+    /**
+     * 前序反序列化
+     */
+    private TreeNode deserialize_dlr(String[] strings) {
+        index++;
+        if (!strings[index].equals("#")) {
+            TreeNode root = new TreeNode(0);
+            root.setVal(Integer.parseInt(strings[index]));
+            root.setLeft(deserialize_dlr(strings));
+            root.setRight(deserialize_dlr(strings));
+            return root;
         } else {
-            builder.append("#!");
+            return null;
         }
     }
 
@@ -117,6 +122,42 @@ public class TreeUtil {
     }
 
     /**
+     * 层序序列化
+     */
+    public void serialize_level(TreeNode head, StringBuilder builder) {
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        TreeNode node;
+        TreeNode last = head;
+        TreeNode nlast = last;
+        queue.offer(head);
+
+        while (!queue.isEmpty()) {
+            node = queue.poll();
+            builder.append(node.getVal());
+            builder.append("!");
+            if (node.getLeft() != null) {
+                queue.offer(node.getLeft());
+                nlast = node.getLeft();
+            } else {
+                builder.append("#!");
+            }
+            if (node.getRight() != null) {
+                queue.offer(node.getRight());
+                nlast = node.getRight();
+            } else {
+                builder.append("#!");
+            }
+            if (node == last) {
+                last = nlast;
+            }
+        }
+    }
+
+    private void deserialize_level(){
+
+    }
+
+    /**
      * 前序遍历(根左右)
      */
     public void DLR(TreeNode head) {
@@ -124,6 +165,24 @@ public class TreeUtil {
         System.out.print(head.getVal());
         if (head.getLeft() != null) DLR(head.getLeft());
         if (head.getRight() != null) DLR(head.getRight());
+    }
+
+    /**
+     * 前序遍历（非递归）
+     */
+    public void dlr_by_stack(TreeNode head) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            System.out.print(node.getVal());
+            if (node.getRight() != null) {
+                stack.push(node.getRight());
+            }
+            if (node.getLeft() != null) {
+                stack.push(node.getLeft());
+            }
+        }
     }
 
     /**
@@ -137,6 +196,25 @@ public class TreeUtil {
     }
 
     /**
+     * 中序遍历(非递归)
+     */
+    public void ldr_by_stack(TreeNode head) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode cur = head;
+        while (!stack.isEmpty() || cur != null) {
+            if (cur != null) {
+                stack.push(cur);//左孩子依次入栈
+                cur = cur.getLeft();
+            } else {//左孩子为空时，打印节点值
+                cur = stack.pop();
+                System.out.print(cur.getVal());
+                cur = cur.getRight();
+            }
+        }
+    }
+
+
+    /**
      * 后序遍历(左右根)
      */
     public void LRD(TreeNode head) {
@@ -144,6 +222,25 @@ public class TreeUtil {
         if (head.getLeft() != null) LRD(head.getLeft());
         if (head.getRight() != null) LRD(head.getRight());
         System.out.print(head.getVal());
+    }
+
+    /**
+     * 后序遍历(非递归)
+     */
+    public void lrd_by_stack(TreeNode head) {
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
+        s1.push(head);
+        while (!s1.isEmpty()) {
+            TreeNode node = s1.pop();
+            s2.push(node);
+            if (node.getLeft() != null) s1.push(node.getLeft());
+            if (node.getRight() != null) s1.push(node.getRight());
+        }
+
+        while (!s2.isEmpty()) {
+            System.out.print(s2.pop().getVal());
+        }
     }
 
     /**
@@ -168,12 +265,12 @@ public class TreeUtil {
             type = 0;
         }
         String[] values = strings[2].split("!");
-        TreeNode head = new TreeNode(0);
-        TreeNode temp = head;
+
         switch (type) {
             case DLR://前
-                break;
+                return deserialize_dlr(values);
             case LDR://中
+                //中序无法单独序列化，因为无法确定根节点
                 break;
             case LRD://后
                 break;
@@ -204,8 +301,44 @@ public class TreeUtil {
             case LRD:
                 serialize_lrd(head, builder);
                 return builder.toString();
+            case LEVEL:
+                serialize_level(head, builder);
+                return builder.toString();
             default:
                 return "序列化类型错误";
         }
+    }
+
+    /**
+     * 层序构造,构建完全二叉树
+     *
+     * @param values
+     */
+    public TreeNode createTree(int[] values) {
+        TreeNode head = new TreeNode(values[0]);
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        TreeNode node;
+        TreeNode last = head;
+        TreeNode nlast = last;
+        queue.offer(head);
+
+        int i = 1;
+        while (i + 1 < values.length) {
+            node = queue.poll();
+            if (node.getLeft() == null) {
+                node.setLeft(new TreeNode(values[i++]));
+                queue.offer(node.getLeft());
+                nlast = node.getLeft();
+            }
+            if (node.getRight() == null) {
+                node.setRight(new TreeNode(values[i++]));
+                queue.offer(node.getRight());
+                nlast = node.getRight();
+            }
+            if (node == last) {
+                last = nlast;
+            }
+        }
+        return head;
     }
 }

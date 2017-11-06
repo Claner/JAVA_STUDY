@@ -2,10 +2,11 @@ import Algorithm.Good;
 import Algorithm.TreeNode;
 import Algorithm.TreeUtil;
 import Algorithm.Util;
-import BookingSystem.BookingSystem;
-import BookingSystem.Flight;
-import Sort.SortUtil;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,8 +17,20 @@ public class Test {
     private static Good[] goods = {new Good(50, 101), new Good(20, 100), new Good(30, 120)};
     private static final String MESSAGE = "taobao";
 
+    static String str0 = "0123456789";
+    static String str1 = "0123456789";
+    String str2 = str0.substring(5);
+    String str3 = new String(str2);
+    String str4 = new String(str3.toCharArray());
+
     public static void main(String[] args) throws InterruptedException {
-//        String str = "if (r >= num.text()){ C = 2.0*=pi*r;}\n";
+//        str0 = null;
+//        System.out.println(str0);
+//        System.out.println(str1);
+//        System.gc();
+//        System.out.println(str0);
+//        System.out.println(str1);
+//        String str = "if (r >= num.text()){ C = 2.0*=pi*r;}";
 //        Util.getInstance().lexicalAnalysis(str);
 
 //        try {
@@ -88,17 +101,27 @@ public class Test {
         left2.setLeft(new TreeNode(7));
         left2.setRight(new TreeNode(8));
         TreeUtil.getInstance().printTree(root);
-        String s = TreeUtil.getInstance().serialize(root,TreeUtil.DLR);
+        String s = TreeUtil.getInstance().serialize(root, TreeUtil.DLR);
+//        System.out.println(s);
+//        TreeNode node = TreeUtil.getInstance().createTreeNode(s);
+//        TreeUtil.getInstance().printTree(node);
+//        s = TreeUtil.getInstance().serialize(root, TreeUtil.LDR);
+//        System.out.println(s);
+        s = TreeUtil.getInstance().serialize(root, TreeUtil.LRD);
         System.out.println(s);
-//        s = TreeUtil.getInstance().serialize(root,TreeUtil.LDR);
+//        s = TreeUtil.getInstance().serialize(root, TreeUtil.LEVEL);
 //        System.out.println(s);
-//        s = TreeUtil.getInstance().serialize(root,TreeUtil.LRD);
-//        System.out.println(s);
-        TreeNode node  =TreeUtil.getInstance().createTreeNode(s);
-        TreeUtil.getInstance().printTree(node);
+
+//        TreeNode node = TreeUtil.getInstance().createTreeNode(s);
+//        TreeUtil.getInstance().printTree(node);
 //        System.out.println(Util.getInstance().rotationPosition("ABCDE",2));
 
+//        int[] a = {1,2,3,4,5,6,7};
+//        TreeNode node = TreeUtil.getInstance().createTree(a);
+//        TreeUtil.getInstance().lrd_by_stack(node);
+//        TreeUtil.getInstance().LRD(node);
 
+//        Good[] goods = {new Good(1, 1), new Good(2, 2), new Good(3, 3)};
+//        System.out.println("最大价值为：" + Util.getInstance().getBagMaxValue(goods, 6));
     }
-
 }

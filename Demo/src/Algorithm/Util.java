@@ -226,14 +226,11 @@ public class Util {
         for (int i = 1; i < ROW; i++) {
             bags[i][0] = 0;//容量为0是价值为0
             for (int w = 1; w < WEIGHT; w++) {
-                if (goods[i - 1].getWeight() <= w) {//如果当前物品容量小于背包容量，则将物品放进背包
-
-                    //如果当前物品价值加上未添加该物品的背包价值大于相同容量但未添加该物品的价值
-                    if ((goods[i - 1].getValue() + bags[i - 1][w - goods[i - 1].getWeight()]) > bags[i - 1][w]) {
-                        bags[i][w] = goods[i - 1].getValue() + bags[i - 1][w - goods[i - 1].getWeight()];
-                    } else {
-                        bags[i][w] = bags[i - 1][w];
-                    }
+                if (goods[i - 1].getWeight() <= w &&
+                        (goods[i - 1].getValue() + bags[i - 1][w - goods[i - 1].getWeight()]) > bags[i - 1][w]) {
+                    //如果当前物品容量小于背包容量，则将物品放进背包
+                    //并且当前物品价值加上未添加该物品的背包价值大于相同容量但未添加该物品的价值
+                    bags[i][w] = goods[i - 1].getValue() + bags[i - 1][w - goods[i - 1].getWeight()];
                 } else {//如果当前物品容量大于背包容量，则当前背包价值等于上一个相同容量的背包价值
                     bags[i][w] = bags[i - 1][w];
                 }
@@ -361,7 +358,7 @@ public class Util {
      * @return
      */
     public boolean isRotationStr(String A, String B) {
-        return (A+A).contains(B);
+        return (A + A).contains(B);
     }
 
     /**
