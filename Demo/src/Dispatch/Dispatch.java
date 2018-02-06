@@ -207,7 +207,7 @@ public class Dispatch {
         PCB process, tempProcess;
         int arriveTime, needTime, maxIndex, currentTime = 0;
         double respRatio, maxPriority = 0;
-//        List<Thread> threadList = new ArrayList<>();
+        List<Thread> threadList = new ArrayList<>();
         final Object lock = new Object();
 
         long now = System.currentTimeMillis();
@@ -243,14 +243,14 @@ public class Dispatch {
 
             System.out.print("进程：" + process.getPid() + ",响应比：" + process.getPriority() + ",到达时间："
                     + process.getArriveTime() + ",需要时间:" + process.getNeedTime() + ",开始时间：" + currentTime + ",");
-//            threadList.add(new Working(process.getPid(), now, currentTime, process.getNeedTime(), lock));
+            threadList.add(new Working(process.getPid(), now, currentTime, process.getNeedTime(), lock));
             currentTime += needTime;
             System.out.println("结束时间：" + currentTime);
         }
 
-//        for (Thread t:threadList){
-//            t.start();
-//        }
+        for (Thread t:threadList){
+            t.start();
+        }
     }
 
     public void addProcess(int pid, int arriveTime, int needTime) {

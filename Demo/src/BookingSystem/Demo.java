@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Created by Clanner on 2017/10/26.
+ * Created by Clanner on 2017/10/15.
  */
 public class Demo {
     public static void main(String[] args) {
@@ -68,106 +68,5 @@ public class Demo {
         Random random = new Random();
         for (int i = 0; i < 100; i++)
             new Window(bookingSystem, 1 + random.nextInt(2), list.get(id-1).getFlightId(), 1 + random.nextInt(10)).start();
-
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),2).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),3).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),7).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),5).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),1).start();
-//        new Window(bookingSystem,1,list.get(id).getFlightId(),8).start();
-//        new Window(bookingSystem,2,list.get(id).getFlightId(),3).start();
     }
 }

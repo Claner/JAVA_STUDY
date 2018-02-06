@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.Bag;
 
 import java.util.List;
 

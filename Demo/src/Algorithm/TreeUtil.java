@@ -153,10 +153,6 @@ public class TreeUtil {
         }
     }
 
-    private void deserialize_level(){
-
-    }
-
     /**
      * 前序遍历(根左右)
      */

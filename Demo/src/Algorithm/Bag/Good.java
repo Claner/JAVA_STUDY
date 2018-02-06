@@ -1,4 +1,6 @@
-package Algorithm;
+package Algorithm.Bag;
+
+import Algorithm.Algorithm;
 
 /**
  * Created by Clanner on 2017/4/28.

@@ -1,6 +1,7 @@
 package Algorithm;
 
-import java.math.BigDecimal;
+import Algorithm.Bag.Good;
+
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -189,56 +190,7 @@ public class Util {
         return pattern.matcher(str).matches();
     }
 
-    /**
-     * 获取背包最大价值
-     *
-     * @param goods
-     * @param MAX_WEIGHT
-     * @return
-     */
-    public final int getBagMaxValue(Good[] goods, int MAX_WEIGHT) {
-        int bags[][] = calMaxValue(goods, MAX_WEIGHT);
-        return bags[goods.length][MAX_WEIGHT];
-    }
 
-    /**
-     * 计算背包最大价值
-     *
-     * @param goods      物品列表
-     * @param MAX_WEIGHT 背包最大容量
-     * @return 返回最大价值
-     */
-    private final int[][] calMaxValue(Good[] goods, int MAX_WEIGHT) {
-
-        /**
-         * bags[i][j]
-         * i表示当前背包放入i个物品
-         * j表示当前背包容量
-         */
-        int ROW = goods.length + 1;
-        int WEIGHT = MAX_WEIGHT + 1;
-        int bags[][] = new int[ROW][WEIGHT];
-
-        //初始化背包,不放任何物品时背包价值为0
-        for (int w = 1; w < WEIGHT; w++)
-            bags[0][w] = 0;
-
-        for (int i = 1; i < ROW; i++) {
-            bags[i][0] = 0;//容量为0是价值为0
-            for (int w = 1; w < WEIGHT; w++) {
-                if (goods[i - 1].getWeight() <= w &&
-                        (goods[i - 1].getValue() + bags[i - 1][w - goods[i - 1].getWeight()]) > bags[i - 1][w]) {
-                    //如果当前物品容量小于背包容量，则将物品放进背包
-                    //并且当前物品价值加上未添加该物品的背包价值大于相同容量但未添加该物品的价值
-                    bags[i][w] = goods[i - 1].getValue() + bags[i - 1][w - goods[i - 1].getWeight()];
-                } else {//如果当前物品容量大于背包容量，则当前背包价值等于上一个相同容量的背包价值
-                    bags[i][w] = bags[i - 1][w];
-                }
-            }
-        }
-
-        return bags;
-    }
 
     /**
      * 小易准备去魔法王国采购魔法神器,购买魔法神器需要使用魔法币,但是小易现在一枚魔法币都没有,但是小易有两台魔法机器可以通过投入x(x可以为0)个魔法币产生更多的魔法币。

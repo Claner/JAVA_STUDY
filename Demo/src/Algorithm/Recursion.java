@@ -3,12 +3,11 @@ package Algorithm;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 /**
- * Created by Clanner on 2017/11/5.
+ * Created by Clanner on 2017/10/13.
  */
-public class recursion {
+public class Recursion {
     public static String buffer = null;
     public static int p = 0;
     public static String ch;
@@ -95,7 +94,7 @@ public class recursion {
         }
     }
 
-    public void mainoperation(int n,int a) throws IOException {
+    public void mainoperation() throws IOException {
         p = 0;
         boolean flag = true;
         System.out.println("请在键盘键入表达式：(以#号结束)");
@@ -118,22 +117,12 @@ public class recursion {
         else {
             System.out.println("表达式正确！");
         }
-        if(n == a + 1)
-            buf.close();
     }
 
     public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
-        int n;
-        recursion Re = new recursion();
-        System.out.println("请输入测试的次数：");
-        Scanner input = new Scanner(System.in);//输入一个数字
-        n = input.nextInt();
-        for(int a = 0;a < n;a++)
-        {
-            Re.mainoperation(n,a);//主控程序
-        }
-        input.close();
+        Recursion Re = new Recursion();
+            Re.mainoperation();
     }
 
 }

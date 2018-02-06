@@ -1,7 +1,7 @@
 package BookingSystem;
 
 /**
- * Created by Clanner on 2017/10/26.
+ * Created by Clanner on 2017/10/15.
  * 班次
  */
 public class Flight {
