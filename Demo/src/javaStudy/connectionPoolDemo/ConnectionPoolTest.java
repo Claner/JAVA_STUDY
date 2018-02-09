@@ -18,6 +18,7 @@ public class ConnectionPoolTest {
         //线程数量
         int threadCount = 50;
         end = new CountDownLatch(threadCount);
+        //每个线程尝试获取连接的次数
         int count = 20;
         AtomicInteger got = new AtomicInteger();
         AtomicInteger notGot = new AtomicInteger();

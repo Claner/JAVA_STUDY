@@ -21,6 +21,7 @@ public class ConnectionPool {
         }
     }
 
+    //释放连接
     public void releaseConnection(Connection connection) {
         if (connection != null) {
             synchronized (pool) {
@@ -30,18 +31,24 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     *
+     * @param mills 等待超时时间
+     * @return 从连接池中返回连接实例
+     * @throws InterruptedException
+     */
     public Connection fetchConnection(long mills) throws InterruptedException {
         synchronized (pool) {
             //完全超时
             if (mills <= 0) {
-                while (pool.isEmpty()) {
+                while (pool.isEmpty()) {//连接池为空则等待
                     pool.wait();
                 }
-                return pool.removeFirst();
+                return pool.removeFirst();//从连接队列中返回
             } else {
                 long future = System.currentTimeMillis() + mills;
                 long remaining = mills;
-                while (pool.isEmpty() && remaining > 0) {
+                while (pool.isEmpty() && remaining > 0) {//连接池为空则等待
                     pool.wait(remaining);
                     remaining = future - System.currentTimeMillis();
                 }

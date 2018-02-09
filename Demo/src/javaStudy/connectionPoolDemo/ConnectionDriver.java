@@ -14,6 +14,7 @@ public class ConnectionDriver {
     static class ConnectionHolder implements InvocationHandler {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            //这里的Connection只是一个接口，最终的实现是由数据库驱动提供的，这里是示例所以先返回null
             if (method.getName().equals("commit")) {
                 TimeUnit.MILLISECONDS.sleep(100);
             }

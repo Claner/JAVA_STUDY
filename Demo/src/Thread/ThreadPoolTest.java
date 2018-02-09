@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 /**
  * Created by Clanner on 2017/10/18.
  */
-public class ThreadPool {
+public class ThreadPoolTest {
     public static void main(String[] args) {
         ExecutorService executor =  Executors.newSingleThreadExecutor();
 
